@@ -9,27 +9,10 @@ export function safeNextPath(value: string | null | undefined): string {
   } catch { return "/dashboard"; }
 }
 
+export const PRODUCTION_ORIGIN = "https://mindforgecpa.vercel.app";
+
 export function authRedirectOrigin(requestUrl: string): string {
-  const requestOrigin = new URL(requestUrl).origin;
-  if (process.env.NODE_ENV !== "production") return requestOrigin;
-  const candidates = [
-    process.env.APP_URL,
-    process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? "https://" + process.env.VERCEL_PROJECT_PRODUCTION_URL : undefined,
-    requestOrigin,
-    "https://mindforgecpa.vercel.app",
-  ];
-  for (const candidate of candidates) {
-    if (!candidate) continue;
-    try {
-      const url = new URL(candidate);
-      const host = url.hostname.toLowerCase();
-      if (url.protocol === "https:" && !url.username && !url.password &&
-          host !== "localhost" && !host.endsWith(".localhost") &&
-          host !== "0.0.0.0" && host !== "[::1]" && !host.startsWith("127.")) {
-        return url.origin;
-      }
-    } catch { /* Ignore invalid deployment configuration. */ }
-  }
-  return "https://mindforgecpa.vercel.app";
+  return process.env.NODE_ENV === "production"
+    ? PRODUCTION_ORIGIN
+    : new URL(requestUrl).origin;
 }

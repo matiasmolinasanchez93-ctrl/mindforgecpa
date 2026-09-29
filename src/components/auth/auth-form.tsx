@@ -1,6 +1,6 @@
 "use client";
 
-import { safeNextPath } from "@/lib/auth-redirect";
+import { safeNextPath, authRedirectOrigin } from "@/lib/auth-redirect";
 import { authErrorMessage } from "@/lib/auth-errors";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -43,7 +43,7 @@ export function AuthForm({ mode, defaultRole = "student" }: AuthFormProps) {
     try {
       const { error } = await createClient().auth.resend({
         type: "signup", email: confirmationEmail,
-        options: { emailRedirectTo: window.location.origin + "/auth/callback?next=" + encodeURIComponent(next) },
+        options: { emailRedirectTo: authRedirectOrigin(window.location.href) + "/auth/callback?next=" + encodeURIComponent(next) },
       });
       if (error) throw error;
       setResendRemaining(60);
@@ -68,7 +68,7 @@ export function AuthForm({ mode, defaultRole = "student" }: AuthFormProps) {
           email: normalizedEmail,
           password,
           options: {
-            emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`,
+            emailRedirectTo: `${authRedirectOrigin(window.location.href)}/auth/callback?next=${encodeURIComponent(next)}`,
             data: { name, role },
           },
         });

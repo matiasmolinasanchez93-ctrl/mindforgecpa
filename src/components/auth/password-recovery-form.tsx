@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { authRedirectOrigin } from "@/lib/auth-redirect";
 import { useEffect, useState, type FormEvent } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { authErrorMessage } from "@/lib/auth-errors";
@@ -34,7 +35,7 @@ export function PasswordRecoveryForm({ mode, invalidLink = false }: { mode: "req
     try {
       const supabase = createClient();
       if (mode === "request") {
-        const redirectTo = new URL("/auth/callback", window.location.origin);
+        const redirectTo = new URL("/auth/callback", authRedirectOrigin(window.location.href));
         redirectTo.searchParams.set("next", "/reset-password");
         const result = await supabase.auth.resetPasswordForEmail(email.trim().toLowerCase(), {
           redirectTo: redirectTo.toString(),
