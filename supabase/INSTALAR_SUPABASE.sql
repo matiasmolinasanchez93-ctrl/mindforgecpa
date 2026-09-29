@@ -2,12 +2,13 @@
 -- 1. Abre tu proyecto > SQL Editor > New query.
 -- 2. Copia TODO este archivo y pulsa Run.
 -- 3. Configura NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_ANON_KEY en .env.local.
--- 4. Authentication > URL Configuration: Site URL = http://localhost:3000
---    Redirect URLs: http://localhost:3000/auth/callback
+-- 4. Authentication > URL Configuration: Site URL = https://mindforgecpa.vercel.app
+--    Redirect URLs: https://mindforgecpa.vercel.app/auth/callback**
 -- El SQL prepara las tablas; las credenciales conectan la web.
 -- No elimina tablas ni registros. Incluye la migracion 003.
 -- Puede ejecutarse nuevamente sobre el esquema compatible de este proyecto.
--- Ejecutar con el rol postgres del SQL Editor.
+-- Ejecutar TODO con el rol postgres del SQL Editor, sin seleccionar fragmentos.
+-- schema.sql e INSTALAR_SUPABASE.sql contienen la misma instalacion; ejecuta solo uno.
 begin;
 create extension if not exists "pgcrypto";
 -- Primero todas las tablas; despues las politicas que las utilizan.
@@ -810,8 +811,8 @@ create policy "Students can delete their own sessions"
   using (auth.uid() = student_id);
 
 -- Deleting a conversation must take its messages with it. The foreign key
--- already cascades, but the messages table needs a delete policy for the
--- cascade to be permitted under RLS.
+-- already cascades. This policy also allows direct deletion of messages by
+-- the owner of the conversation.
 drop policy if exists "Students can delete messages of their sessions"
   on public.ai_session_messages;
 create policy "Students can delete messages of their sessions"

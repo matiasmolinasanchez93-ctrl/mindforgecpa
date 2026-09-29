@@ -30,15 +30,28 @@ export default async function DashboardPage() {
 
   if (profile.role === "teacher") redirect("/teacher");
 
-  const skills = await getStudentSkills(supabase, user.id);
-  const recentActivity = await getRecentActivity(supabase, user.id);
-  const classes = await getStudentClasses(supabase, user.id);
-  const achievements = await getStudentAchievements(supabase, user.id);
+  const [skills, recentActivity, classes, achievements, chats, chatCount, activityCount, promptCount, checkCount] = await Promise.all([
+    getStudentSkills(supabase, user.id), getRecentActivity(supabase, user.id),
+    getStudentClasses(supabase, user.id), getStudentAchievements(supabase, user.id),
+    supabase.from("ai_sessions").select("id,title,subject,updated_at").eq("student_id", user.id).order("updated_at", { ascending: false }).limit(6),
+    supabase.from("ai_sessions").select("id", { count: "exact", head: true }).eq("student_id", user.id),
+    supabase.from("activity_attempts").select("id", { count: "exact", head: true }).eq("student_id", user.id),
+    supabase.from("activity_attempts").select("id", { count: "exact", head: true }).eq("student_id", user.id).eq("activity_type", "prompt_builder"),
+    supabase.from("activity_attempts").select("id", { count: "exact", head: true }).eq("student_id", user.id).eq("activity_type", "fact_checker"),
+  ]);
+  const summary = {
+    conversations: chatCount.error ? null : chatCount.count ?? 0,
+    activities: activityCount.error ? null : activityCount.count ?? 0,
+    prompts: promptCount.error ? null : promptCount.count ?? 0,
+    checks: checkCount.error ? null : checkCount.count ?? 0,
+  };
 
   return (
     <AppShell role="student">
       <DashboardView
         profile={profile}
+        conversations={chats.data ?? []}
+        summary={summary}
         skills={skills}
         recentActivity={recentActivity}
         classes={classes}

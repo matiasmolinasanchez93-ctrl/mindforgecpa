@@ -37,6 +37,7 @@ export function PromptBuilderView() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "No se pudo construir el prompt.");
       setResult(data);
+      if (data.saved === false) toast("El resultado está listo, pero no se pudo guardar en tu resumen.");
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "El constructor de prompts falló.");
     } finally {

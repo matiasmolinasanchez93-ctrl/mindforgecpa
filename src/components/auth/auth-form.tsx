@@ -1,7 +1,8 @@
 "use client";
 
 import { safeNextPath } from "@/lib/auth-redirect";
-import { useState } from "react";
+import { authErrorMessage } from "@/lib/auth-errors";
+import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase/client";
@@ -25,17 +26,46 @@ export function AuthForm({ mode, defaultRole = "student" }: AuthFormProps) {
   const [loading, setLoading] = useState(false);
 
   const isSignup = mode === "signup";
+  const [formError, setFormError] = useState("");
+  const [confirmationEmail, setConfirmationEmail] = useState<string | null>(null);
+  const [resendRemaining, setResendRemaining] = useState(0);
+
+  useEffect(() => {
+    if (resendRemaining <= 0) return;
+    const timer = setTimeout(() => setResendRemaining((value) => value - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [resendRemaining]);
+
+  async function resendConfirmation() {
+    if (!confirmationEmail || loading || resendRemaining > 0) return;
+    setLoading(true);
+    setFormError("");
+    try {
+      const { error } = await createClient().auth.resend({
+        type: "signup", email: confirmationEmail,
+        options: { emailRedirectTo: window.location.origin + "/auth/callback?next=" + encodeURIComponent(next) },
+      });
+      if (error) throw error;
+      setResendRemaining(60);
+      toast.success("Solicitud de reenvío recibida. Revisa también la carpeta de spam.");
+    } catch (error) {
+      setFormError(authErrorMessage(error));
+    } finally { setLoading(false); }
+  }
+
+
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
 
-    const supabase = createClient();
-
+    setFormError("");
+    const normalizedEmail = email.trim().toLowerCase();
     try {
+      const supabase = createClient();
       if (isSignup) {
         const { data, error } = await supabase.auth.signUp({
-          email,
+          email: normalizedEmail,
           password,
           options: {
             emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`,
@@ -45,34 +75,56 @@ export function AuthForm({ mode, defaultRole = "student" }: AuthFormProps) {
         if (error) throw error;
 
         if (data.user && !data.session) {
-          toast.success("Revisa tu correo para confirmar tu cuenta.");
+          setConfirmationEmail(normalizedEmail);
+          setResendRemaining(60);
+          setPassword("");
           return;
         }
+        if (!data.session) throw new Error("Missing signup session");
         toast.success("Cuenta creada. ¡Bienvenido!");
         router.replace(next);
         router.refresh();
       } else {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: normalizedEmail,
           password,
         });
         if (error) throw error;
 
+        if (!data.session) throw new Error("Missing login session");
         toast.success("¡Bienvenido de nuevo!");
         router.replace(next);
         router.refresh();
       }
     } catch (error) {
-      toast.error(
-        error instanceof Error ? error.message : "La autenticación falló. Inténtalo de nuevo."
-      );
+      const message = authErrorMessage(error);
+      setFormError(message);
+      if ((error as { code?: string })?.code === "email_not_confirmed") setConfirmationEmail(normalizedEmail);
+      toast.error(message);
     } finally {
       setLoading(false);
     }
   }
 
+  if (confirmationEmail) return (
+    <section className="space-y-4" aria-label="Confirmar correo">
+      <div role="status" className="rounded-2xl border border-brand-200 bg-brand-50 p-5">
+        <h2 className="font-semibold">Confirma tu correo para entrar</h2>
+        <p className="mt-2 break-words text-sm">La confirmación de tu cuenta está pendiente. Revisa {confirmationEmail}, incluida la carpeta de spam.</p>
+        <p className="mt-2 text-xs text-muted-foreground">Si no recibes el mensaje, puedes solicitar otro. Si ya confirmaste una cuenta con este correo, inicia sesión.</p>
+      </div>
+      {formError && <p role="alert" className="rounded-xl bg-red-50 p-3 text-sm text-red-700">{formError}</p>}
+      <Button type="button" className="w-full" onClick={resendConfirmation} loading={loading} disabled={resendRemaining > 0}>
+        {resendRemaining > 0 ? "Reenviar en " + resendRemaining + " s" : "Reenviar confirmación"}
+      </Button>
+      <Button type="button" variant="outline" className="w-full" disabled={loading} onClick={() => { setConfirmationEmail(null); setFormError(""); router.replace("/login?next=" + encodeURIComponent(next)); }}>Ya confirmé mi correo</Button>
+      <button type="button" className="text-sm text-brand-700" disabled={loading} onClick={() => { setConfirmationEmail(null); setFormError(""); }}>Corregir mi correo</button>
+    </section>
+  );
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {formError && <p role="alert" className="rounded-xl bg-red-50 p-3 text-sm text-red-700">{formError}</p>}
       {searchParams.get("error") === "auth" && <p role="alert" className="rounded-xl bg-red-50 p-3 text-sm text-red-700">El enlace de acceso no es válido o ha caducado. Inicia sesión o solicita un nuevo enlace.</p>}
       {isSignup && (
         <>

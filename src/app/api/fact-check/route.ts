@@ -1,4 +1,5 @@
-  import { NextRequest, NextResponse } from "next/server";
+  import { saveToolActivity } from "@/services/learningActivity";
+import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { analyzeClaims, FactCheckError } from "@/services/ai/factChecker";
 
@@ -29,7 +30,8 @@ export async function POST(request: NextRequest) {
 
   try {
     const result = await analyzeClaims(body.text);
-    return NextResponse.json(result);
+    const saved = await saveToolActivity(supabase, user.id, "fact_checker", "Verificación: " + body.text.slice(0, 100), result.overallAssessment);
+    return NextResponse.json({ ...result, saved });
   } catch (error) {
     if (error instanceof FactCheckError) {
       return NextResponse.json({ error: error.message }, { status: 503 });

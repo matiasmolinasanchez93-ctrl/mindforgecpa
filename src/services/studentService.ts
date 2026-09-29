@@ -17,12 +17,18 @@ export async function getProfile(
   supabase: SupabaseClient,
   userId: string
 ): Promise<Profile | null> {
-  const { data } = await supabase
-    .from("profiles")
-    .select("*")
-    .eq("id", userId)
-    .maybeSingle();
-  return data as Profile | null;
+  const { data, error } = await supabase.from("profiles").select("*").eq("id", userId).maybeSingle();
+  if (data || error) return data as Profile | null;
+  // Repair only the authenticated user's missing profile, never another account.
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user || user.id !== userId) return null;
+  const { error: insertError } = await supabase.from("profiles").upsert({
+    id: user.id, name: String(user.user_metadata?.name ?? ""), email: user.email ?? "",
+    role: user.user_metadata?.role === "teacher" ? "teacher" : "student",
+  }, { onConflict: "id", ignoreDuplicates: true });
+  if (insertError) { console.warn("[profile] creation failed:", insertError.message); return null; }
+  const result = await supabase.from("profiles").select("*").eq("id", user.id).maybeSingle();
+  return result.data as Profile | null;
 }
 
 export async function updateProfile(

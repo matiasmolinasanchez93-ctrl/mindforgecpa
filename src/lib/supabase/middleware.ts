@@ -1,4 +1,4 @@
-import { safeNextPath } from "@/lib/auth-redirect";
+import { safeNextPath, authRedirectOrigin } from "@/lib/auth-redirect";
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
@@ -34,7 +34,8 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   function redirectWithCookies(url: URL) {
-    const response = NextResponse.redirect(url);
+    const target = new URL(url.pathname + url.search, authRedirectOrigin(request.url));
+    const response = NextResponse.redirect(target);
     supabaseResponse.cookies.getAll().forEach((cookie) => response.cookies.set(cookie));
     return response;
   }

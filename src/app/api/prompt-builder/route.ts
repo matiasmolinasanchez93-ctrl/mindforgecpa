@@ -1,3 +1,4 @@
+import { saveToolActivity } from "@/services/learningActivity";
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { buildOptimizedPrompt, PromptBuilderError } from "@/services/ai/promptBuilder";
@@ -30,7 +31,8 @@ export async function POST(request: NextRequest) {
       constraints: body.constraints || "",
       outputFormat: body.outputFormat || "",
     });
-    return NextResponse.json(result);
+    const saved = await saveToolActivity(supabase, user.id, "prompt_builder", "Prompt: " + body.goal, result.optimizedPrompt);
+    return NextResponse.json({ ...result, saved });
   } catch (error) {
     if (error instanceof PromptBuilderError) {
       return NextResponse.json({ error: error.message }, { status: 503 });

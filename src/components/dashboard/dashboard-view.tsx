@@ -1,4 +1,6 @@
 "use client";
+import { useTransition } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, GraduationCap, Puzzle, FileText, Search, Trophy, Flame, Clock3 } from "lucide-react";
 import type { Profile, StudentSkill, ActivityAttempt, StudentAchievement, Achievement } from "@/types";
@@ -10,6 +12,8 @@ import { LearningArt } from "@/components/ui/learning-art";
 import { getGreeting } from "@/lib/utils";
 
 interface DashboardViewProps {
+  conversations?: { id: string; title: string; subject: string; updated_at: string }[];
+  summary?: { conversations: number | null; activities: number | null; prompts: number | null; checks: number | null };
   profile: Profile; skills: StudentSkill[]; recentActivity: ActivityAttempt[];
   classes: { class: { id: string; name: string; subject: string } }[];
   achievements: (StudentAchievement & { achievement: Achievement })[];
@@ -26,11 +30,13 @@ const tools = [
   { href: "/prompt-builder", title: "Constructor de Prompts", detail: "Mejores preguntas. Mejores resultados.", icon: FileText },
   { href: "/fact-checker", title: "Verificador de Datos", detail: "Ve más allá de la primera respuesta.", icon: Search },
 ];
-export function DashboardView({ profile, skills, recentActivity, classes, achievements }: DashboardViewProps) {
+export function DashboardView({ profile, skills, recentActivity, classes, achievements, conversations = [], summary }: DashboardViewProps) {
+  const router = useRouter();
+  const [refreshing, startRefresh] = useTransition();
   if (!profile) return <p role="status" className="py-20 text-center text-muted-foreground">Cargando tu espacio de aprendizaje…</p>;
   const xp = xpProgressInLevel(profile.xp || 0);
   const skillMap = new Map(skills.map(s => [s.skill_name, Number(s.score)]));
-  const latest = recentActivity[0];
+  const latest = recentActivity.find((activity) => activity.details?.source !== "tool");
   const weakest = skills.filter(s => s.total_attempts > 0).sort((a,b) => Number(a.score) - Number(b.score))[0];
   const streak = profile.streak || 0;
   return <div className="space-y-9 animate-fade-in-up">
@@ -38,6 +44,32 @@ export function DashboardView({ profile, skills, recentActivity, classes, achiev
       <div><p className="eyebrow mb-3">Tu próximo capítulo</p><h1 className="page-heading">{getGreeting()}, {profile.name?.split(" ")[0] || "Estudiante"}.</h1><p className="mt-3 text-sm text-muted-foreground">Haz espacio para un pequeño descubrimiento hoy.</p></div>
       <span className="flex items-center gap-2 rounded-full border border-card-border bg-white px-4 py-2 text-xs"><Flame size={16} className="text-achievement-ink" /><strong>{streak} {streak === 1 ? "día" : "días"}</strong> de racha</span>
     </header>
+    <div className="flex justify-end"><button type="button" disabled={refreshing} onClick={() => startRefresh(() => router.refresh())} className="text-link text-sm">{refreshing ? "Actualizando..." : "Actualizar mi resumen"}</button></div>
+    <section aria-label="Actividad real de tu cuenta" className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+      {[
+        ["Conversaciones", summary?.conversations],
+        ["Actividades guardadas", summary?.activities],
+        ["Prompts creados", summary?.prompts],
+        ["Textos verificados", summary?.checks],
+      ].map(([label, value]) => <div key={String(label)} className="panel p-5">
+        <p className="text-xs text-muted-foreground">{label}</p>
+        <p className="mt-2 text-3xl font-semibold">{value ?? "—"}</p>
+      </div>)}
+    </section>
+    <section aria-labelledby="recent-chats-title">
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <h2 id="recent-chats-title" className="text-lg font-semibold">Retoma tus conversaciones</h2>
+        <Link href="/tutor?new=1" className="text-link">Nuevo chat<ArrowRight size={15} /></Link>
+      </div>
+      {conversations.length ? <div className="grid gap-3 sm:grid-cols-2">
+        {conversations.map((chat) => <Link key={chat.id} href={"/tutor?session=" + chat.id}
+          className="panel flex min-w-0 items-center justify-between gap-3 p-5 transition-colors hover:bg-brand-50">
+          <div className="min-w-0"><p className="truncate text-sm font-semibold">{chat.title || "Conversación"}</p>
+            <p className="mt-1 text-xs text-muted-foreground">{subjectLabel(chat.subject)} · {new Date(chat.updated_at).toLocaleDateString("es-GT", { timeZone: "America/Guatemala" })}</p></div>
+          <ArrowUpRight size={17} className="shrink-0" />
+        </Link>)}
+      </div> : <div className="panel p-6 text-sm text-muted-foreground">{conversations === null ? "No se pudieron cargar las conversaciones." : "Todavía no tienes conversaciones guardadas. Inicia una con el tutor para verla aquí."}</div>}
+    </section>
     <section aria-labelledby="continue-title" className="panel relative overflow-hidden">
       <div className="grid md:grid-cols-[1fr_280px]">
         <div className="p-6 sm:p-9"><div className="flex flex-wrap items-center gap-3"><span className="eyebrow text-primary">Continúa aprendiendo</span><span className="h-1 w-1 rounded-full bg-zinc-300" /><span className="text-xs text-muted-foreground">{latest?.subject ? subjectLabel(latest.subject) : "Pensamiento independiente"}</span></div>
@@ -62,7 +94,7 @@ export function DashboardView({ profile, skills, recentActivity, classes, achiev
     </div>
     <section><h2 className="mb-5 text-lg font-semibold">Tu caja de herramientas de aprendizaje</h2><div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">{tools.map((tool, i) => <Link href={tool.href} key={tool.href} className="group rounded-xl border border-card-border bg-white p-5 hover:border-primary/30 hover:shadow-sm"><div className="flex justify-between"><tool.icon size={20} className={i === 0 ? "text-ai" : "text-primary"} /><ArrowUpRight size={15} className="text-zinc-400 group-hover:text-primary" /></div><h3 className="mt-5 text-sm font-semibold">{tool.title}</h3><p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{tool.detail}</p></Link>)}</div></section>
     <div className="grid gap-8 lg:grid-cols-[1.5fr_1fr]">
-      <section><h2 className="mb-4 text-lg font-semibold">Actividad reciente</h2><div className="panel divide-y divide-card-border">{recentActivity.length ? recentActivity.slice(0,5).map(a => <div key={a.id} className="flex items-center justify-between gap-4 p-5"><div className="min-w-0"><p className="text-sm font-medium">{a.activity_title || activityLabel(a.activity_type)}</p><p className="mt-1 text-xs text-muted-foreground">{subjectLabel(a.subject)}</p></div><div className="shrink-0 text-right"><Badge variant={a.score >= 70 ? "success" : "warning"}>{Math.round(a.score)}%</Badge><p className="mt-1 text-xs text-achievement-ink">+{a.xp_earned} XP</p></div></div>) : <div className="p-7"><p className="text-sm font-medium">Tu historia empieza con un intento.</p><p className="mt-2 text-xs text-muted-foreground">Los desafíos completados aparecerán aquí.</p><Link href="/challenges" className="text-link mt-4">Prueba tu primer desafío<ArrowRight size={14} /></Link></div>}</div></section>
+      <section><h2 className="mb-4 text-lg font-semibold">Actividad reciente</h2><div className="panel divide-y divide-card-border">{recentActivity.length ? recentActivity.slice(0,5).map(a => <div key={a.id} className="flex items-center justify-between gap-4 p-5"><div className="min-w-0"><p className="text-sm font-medium">{a.activity_title || activityLabel(a.activity_type)}</p><p className="mt-1 text-xs text-muted-foreground">{subjectLabel(a.subject)}</p>{typeof a.details?.preview === "string" && <details className="mt-2 text-xs"><summary className="cursor-pointer text-brand-700">Ver resultado guardado</summary><p className="mt-2 whitespace-pre-wrap leading-relaxed">{a.details.preview}</p></details>}</div><div className="shrink-0 text-right">{a.details?.source === "tool" ? <Badge variant="default">Herramienta utilizada</Badge> : <><Badge variant={a.score >= 70 ? "success" : "warning"}>{Math.round(a.score)}%</Badge><p className="mt-1 text-xs text-achievement-ink">+{a.xp_earned} XP</p></>}</div></div>) : <div className="p-7"><p className="text-sm font-medium">Tu historia empieza con un intento.</p><p className="mt-2 text-xs text-muted-foreground">Los desafíos completados aparecerán aquí.</p><Link href="/challenges" className="text-link mt-4">Prueba tu primer desafío<ArrowRight size={14} /></Link></div>}</div></section>
       <div className="space-y-7"><section><div className="mb-4 flex justify-between"><h2 className="text-lg font-semibold">Mis clases</h2><Link href="/classes" className="text-link">Únete a una clase<ArrowUpRight size={14} /></Link></div>{classes.length ? classes.map(c => <div key={c.class.id} className="border-b border-card-border py-3"><p className="text-sm font-medium">{c.class.name}</p><p className="mt-1 text-xs text-muted-foreground">{subjectLabel(c.class.subject)}</p></div>) : <p className="text-sm text-muted-foreground">¿Aprenden juntos? Únete con el código de tu docente.</p>}</section><section><h2 className="mb-3 text-sm font-semibold">Hitos que vale la pena conservar</h2>{achievements.length ? <div className="flex flex-wrap gap-2">{achievements.map(a => <Badge key={a.id} variant="warning" title={a.achievement.description}>{a.achievement.icon} {a.achievement.name}</Badge>)}</div> : <p className="text-xs leading-relaxed text-muted-foreground">Tu primer logro está por llegar. Completa desafíos para conseguirlo.</p>}</section></div>
     </div>
   </div>;

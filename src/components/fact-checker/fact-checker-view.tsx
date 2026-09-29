@@ -55,6 +55,7 @@ export function FactCheckerView() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "El análisis falló.");
       setResult(data);
+      if (data.saved === false) toast("El resultado está listo, pero no se pudo guardar en tu resumen.");
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "La verificación falló.");
     } finally {
