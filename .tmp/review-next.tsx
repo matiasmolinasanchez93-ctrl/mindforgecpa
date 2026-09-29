@@ -1,0 +1,1 @@
+import React from "react";export default function Link({children,...props}:any){return <a {...props}>{children}</a>};export const usePathname=()=>"/"+(new URLSearchParams(location.search).get("screen")||"tutor");export const useRouter=()=>({push(){},refresh(){}});export const useSearchParams=()=>new URLSearchParams();

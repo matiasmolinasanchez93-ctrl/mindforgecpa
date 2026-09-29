@@ -1,0 +1,1 @@
+export const createClient=()=>({auth:{signInWithPassword:async()=>({error:null}),signUp:async()=>({data:{user:{},session:{}},error:null}),signOut:async()=>({})}});

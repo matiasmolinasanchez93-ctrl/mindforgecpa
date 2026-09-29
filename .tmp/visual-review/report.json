@@ -1,0 +1,632 @@
+[
+  {
+    "name": "home",
+    "width": 1440,
+    "scroll": 1434,
+    "headings": [
+      "Big ideas.Better questions.Your own mind."
+    ],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "login",
+    "width": 1440,
+    "scroll": 1440,
+    "headings": [
+      "Welcome back"
+    ],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "signup",
+    "width": 1440,
+    "scroll": 1440,
+    "headings": [],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "dashboard",
+    "width": 1440,
+    "scroll": 1434,
+    "headings": [
+      "Good afternoon, Alex."
+    ],
+    "active": [
+      "Overview"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "dashboard-empty",
+    "width": 1440,
+    "scroll": 1434,
+    "headings": [
+      "Good afternoon, Alex."
+    ],
+    "active": [
+      "Overview"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "tutor",
+    "width": 1440,
+    "scroll": 1440,
+    "headings": [
+      "What do you want to learn?"
+    ],
+    "active": [
+      "AI Tutor"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "challenges",
+    "width": 1440,
+    "scroll": 1440,
+    "headings": [
+      "Choose Your Challenge"
+    ],
+    "active": [
+      "Challenges"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "prompts",
+    "width": 1440,
+    "scroll": 1440,
+    "headings": [
+      "Build Better Prompts"
+    ],
+    "active": [
+      "Prompt Builder"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "fact-checker",
+    "width": 1440,
+    "scroll": 1440,
+    "headings": [
+      "AI Fact Checker"
+    ],
+    "active": [
+      "Fact Checker"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "classes",
+    "width": 1440,
+    "scroll": 1440,
+    "headings": [
+      "Join a Class"
+    ],
+    "active": [
+      "My Classes"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "teacher",
+    "width": 1440,
+    "scroll": 1440,
+    "headings": [
+      "Good afternoon, Alex"
+    ],
+    "active": [
+      "Overview"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "teacher-empty",
+    "width": 1440,
+    "scroll": 1440,
+    "headings": [
+      "Good afternoon, Alex"
+    ],
+    "active": [
+      "My Classes"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "class-detail",
+    "width": 1440,
+    "scroll": 1440,
+    "headings": [
+      "Critical thinking lab"
+    ],
+    "active": [
+      "My Classes"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "business",
+    "width": 1440,
+    "scroll": 1434,
+    "headings": [
+      "Studio North"
+    ],
+    "active": [
+      "Your business"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "coach",
+    "width": 1440,
+    "scroll": 1434,
+    "headings": [
+      "Your coach for Studio North"
+    ],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "onboarding",
+    "width": 1440,
+    "scroll": 1440,
+    "headings": [
+      "Set your goal"
+    ],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "privacy",
+    "width": 1440,
+    "scroll": 1434,
+    "headings": [
+      "Privacy Policy"
+    ],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "terms",
+    "width": 1440,
+    "scroll": 1440,
+    "headings": [
+      "Terms of Service"
+    ],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "chart",
+    "width": 1440,
+    "scroll": 1440,
+    "headings": [],
+    "active": [
+      "Your business"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "home",
+    "width": 390,
+    "scroll": 384,
+    "headings": [
+      "Big ideas.Better questions.Your own mind."
+    ],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "login",
+    "width": 390,
+    "scroll": 390,
+    "headings": [
+      "Welcome back"
+    ],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "signup",
+    "width": 390,
+    "scroll": 390,
+    "headings": [],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "dashboard",
+    "width": 390,
+    "scroll": 384,
+    "headings": [
+      "Good afternoon, Alex."
+    ],
+    "active": [
+      "Overview"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "dashboard-empty",
+    "width": 390,
+    "scroll": 384,
+    "headings": [
+      "Good afternoon, Alex."
+    ],
+    "active": [
+      "Overview"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "tutor",
+    "width": 390,
+    "scroll": 384,
+    "headings": [
+      "What do you want to learn?"
+    ],
+    "active": [
+      "AI Tutor"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "challenges",
+    "width": 390,
+    "scroll": 384,
+    "headings": [
+      "Choose Your Challenge"
+    ],
+    "active": [
+      "Challenges"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "prompts",
+    "width": 390,
+    "scroll": 384,
+    "headings": [
+      "Build Better Prompts"
+    ],
+    "active": [
+      "Prompt Builder"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "fact-checker",
+    "width": 390,
+    "scroll": 390,
+    "headings": [
+      "AI Fact Checker"
+    ],
+    "active": [
+      "Fact Checker"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "classes",
+    "width": 390,
+    "scroll": 390,
+    "headings": [
+      "Join a Class"
+    ],
+    "active": [
+      "My Classes"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "teacher",
+    "width": 390,
+    "scroll": 390,
+    "headings": [
+      "Good afternoon, Alex"
+    ],
+    "active": [
+      "Overview"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "teacher-empty",
+    "width": 390,
+    "scroll": 390,
+    "headings": [
+      "Good afternoon, Alex"
+    ],
+    "active": [
+      "My Classes"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "class-detail",
+    "width": 390,
+    "scroll": 384,
+    "headings": [
+      "Critical thinking lab"
+    ],
+    "active": [
+      "My Classes"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "business",
+    "width": 390,
+    "scroll": 384,
+    "headings": [
+      "Studio North"
+    ],
+    "active": [
+      "Your business"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "coach",
+    "width": 390,
+    "scroll": 384,
+    "headings": [
+      "Your coach for Studio North"
+    ],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "onboarding",
+    "width": 390,
+    "scroll": 390,
+    "headings": [
+      "Set your goal"
+    ],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "privacy",
+    "width": 390,
+    "scroll": 384,
+    "headings": [
+      "Privacy Policy"
+    ],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "terms",
+    "width": 390,
+    "scroll": 384,
+    "headings": [
+      "Terms of Service"
+    ],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "chart",
+    "width": 390,
+    "scroll": 390,
+    "headings": [],
+    "active": [
+      "Your business"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "home",
+    "width": 320,
+    "scroll": 314,
+    "headings": [
+      "Big ideas.Better questions.Your own mind."
+    ],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "login",
+    "width": 320,
+    "scroll": 320,
+    "headings": [
+      "Welcome back"
+    ],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "signup",
+    "width": 320,
+    "scroll": 320,
+    "headings": [],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "dashboard",
+    "width": 320,
+    "scroll": 314,
+    "headings": [
+      "Good afternoon, Alex."
+    ],
+    "active": [
+      "Overview"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "dashboard-empty",
+    "width": 320,
+    "scroll": 314,
+    "headings": [
+      "Good afternoon, Alex."
+    ],
+    "active": [
+      "Overview"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "tutor",
+    "width": 320,
+    "scroll": 314,
+    "headings": [
+      "What do you want to learn?"
+    ],
+    "active": [
+      "AI Tutor"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "challenges",
+    "width": 320,
+    "scroll": 314,
+    "headings": [
+      "Choose Your Challenge"
+    ],
+    "active": [
+      "Challenges"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "prompts",
+    "width": 320,
+    "scroll": 314,
+    "headings": [
+      "Build Better Prompts"
+    ],
+    "active": [
+      "Prompt Builder"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "fact-checker",
+    "width": 320,
+    "scroll": 320,
+    "headings": [
+      "AI Fact Checker"
+    ],
+    "active": [
+      "Fact Checker"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "classes",
+    "width": 320,
+    "scroll": 320,
+    "headings": [
+      "Join a Class"
+    ],
+    "active": [
+      "My Classes"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "teacher",
+    "width": 320,
+    "scroll": 320,
+    "headings": [
+      "Good afternoon, Alex"
+    ],
+    "active": [
+      "Overview"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "teacher-empty",
+    "width": 320,
+    "scroll": 320,
+    "headings": [
+      "Good afternoon, Alex"
+    ],
+    "active": [
+      "My Classes"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "class-detail",
+    "width": 320,
+    "scroll": 314,
+    "headings": [
+      "Critical thinking lab"
+    ],
+    "active": [
+      "My Classes"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "business",
+    "width": 320,
+    "scroll": 314,
+    "headings": [
+      "Studio North"
+    ],
+    "active": [
+      "Your business"
+    ],
+    "overflow": []
+  },
+  {
+    "name": "coach",
+    "width": 320,
+    "scroll": 314,
+    "headings": [
+      "Your coach for Studio North"
+    ],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "onboarding",
+    "width": 320,
+    "scroll": 320,
+    "headings": [
+      "Set your goal"
+    ],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "privacy",
+    "width": 320,
+    "scroll": 314,
+    "headings": [
+      "Privacy Policy"
+    ],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "terms",
+    "width": 320,
+    "scroll": 314,
+    "headings": [
+      "Terms of Service"
+    ],
+    "active": [],
+    "overflow": []
+  },
+  {
+    "name": "chart",
+    "width": 320,
+    "scroll": 320,
+    "headings": [],
+    "active": [
+      "Your business"
+    ],
+    "overflow": []
+  }
+]

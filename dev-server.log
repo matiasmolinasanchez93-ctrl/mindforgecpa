@@ -1,0 +1,316 @@
+
+> buildai@0.1.0 dev
+> next dev
+
+▲ Next.js 16.3.1 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.7:3000
+- Environments: .env.local
+✓ Ready in 1195ms
+⚠ Warning: Next.js ignored package-lock.json in C:\Users\josem because it would include your home directory (C:\Users\josem).
+ To use this directory, set `turbopack.root` in your Next.js config.
+
+✓ Running next.config.ts took 211ms
+Creating turbopack project {
+  dir: 'C:\\Users\\josem\\OneDrive\\Escritorio\\AI bussiness help web',
+  testMode: true
+}
+⚠ Turbopack's filesystem cache has been deleted because we previously detected an internal error in Turbopack. Builds or page loads may be slower as a result.
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead.
+
+  To migrate automatically, run:
+  npx @next/codemod@canary middleware-to-proxy .
+
+  Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+
+○ Compiling / ...
+ GET / 200 in 6.4s (next.js: 5.3s, proxy.ts: 341ms, application-code: 816ms)
+ GET / 200 in 6.4s (next.js: 3.9s, proxy.ts: 1690ms, application-code: 793ms)
+ GET /dashboard 307 in 2.8s (proxy.ts: 199ms)
+ GET /dashboard 200 in 1193ms (next.js: 9ms, proxy.ts: 179ms, application-code: 1005ms)
+ GET /tutor 200 in 1785ms (next.js: 829ms, proxy.ts: 410ms, application-code: 546ms)
+[tutor] could not create session: Could not find the table 'public.ai_sessions' in the schema cache
+[ai] Make.com returned status 500. Scenario failed to complete.
+[ai] OpenAI is rate limited or out of quota. { "error": { "message": "You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.", "type": "insufficient_quota", "param": null, "code": "credit_balance_exhausted" } }
+[ai] responding from the local engine
+ POST /api/tutor 200 in 6.3s (next.js: 2.2s, proxy.ts: 274ms, application-code: 3.9s)
+[tutor] could not create session: Could not find the table 'public.ai_sessions' in the schema cache
+[ai] Make.com returned status 500. Scenario failed to complete.
+[ai] responding from the local engine
+ POST /api/tutor 200 in 3.1s (next.js: 225ms, proxy.ts: 692ms, application-code: 2.2s)
+[tutor] could not create session: Could not find the table 'public.ai_sessions' in the schema cache
+[ai] Make.com returned status 500. Scenario failed to complete.
+[ai] responding from the local engine
+ POST /api/tutor 200 in 1699ms (next.js: 8ms, proxy.ts: 551ms, application-code: 1140ms)
+[tutor] could not create session: Could not find the table 'public.ai_sessions' in the schema cache
+ POST /api/tutor 200 in 11.6s (next.js: 10ms, proxy.ts: 543ms, application-code: 11.1s)
+[tutor] could not create session: Could not find the table 'public.ai_sessions' in the schema cache
+[ai] Make.com returned status 500. Scenario failed to complete.
+[ai] responding from the local engine
+ POST /api/tutor 200 in 2.2s (next.js: 4ms, proxy.ts: 398ms, application-code: 1833ms)
+[tutor] could not create session: Could not find the table 'public.ai_sessions' in the schema cache
+[ai] responding from the local engine
+ POST /api/tutor 200 in 849ms (next.js: 11ms, proxy.ts: 375ms, application-code: 463ms)
+ GET /challenges 200 in 2.0s (next.js: 896ms, proxy.ts: 340ms, application-code: 776ms)
+ GET /tutor 200 in 550ms (next.js: 15ms, proxy.ts: 524ms, application-code: 11ms)
+ GET /tutor 200 in 646ms (next.js: 5ms, proxy.ts: 172ms, application-code: 468ms)
+ GET /dashboard 200 in 837ms (next.js: 13ms, proxy.ts: 435ms, application-code: 388ms)
+ GET /tutor 200 in 705ms (next.js: 5ms, proxy.ts: 195ms, application-code: 505ms)
+[tutor] could not create session: Could not find the table 'public.ai_sessions' in the schema cache
+ POST /api/tutor 200 in 6.5s (next.js: 6ms, proxy.ts: 347ms, application-code: 6.1s)
+[tutor] could not create session: Could not find the table 'public.ai_sessions' in the schema cache
+ POST /api/tutor 200 in 4.5s (next.js: 4ms, proxy.ts: 400ms, application-code: 4.1s)
+[tutor] could not create session: Could not find the table 'public.ai_sessions' in the schema cache
+ POST /api/tutor 200 in 5.0s (next.js: 4ms, proxy.ts: 331ms, application-code: 4.7s)
+[tutor] could not create session: Could not find the table 'public.ai_sessions' in the schema cache
+ POST /api/tutor 200 in 5.5s (next.js: 6ms, proxy.ts: 287ms, application-code: 5.2s)
+ GET /challenges 200 in 494ms (next.js: 6ms, proxy.ts: 414ms, application-code: 73ms)
+ GET /tutor 200 in 670ms (next.js: 6ms, proxy.ts: 469ms, application-code: 196ms)
+ GET /dashboard 200 in 927ms (next.js: 8ms, proxy.ts: 354ms, application-code: 565ms)
+ GET /fact-checker 200 in 1109ms (next.js: 626ms, proxy.ts: 252ms, application-code: 231ms)
+[ai] provider returned unusable JSON; using the local engine
+ POST /api/fact-check 200 in 11.6s (next.js: 321ms, proxy.ts: 330ms, application-code: 10.9s)
+ GET /challenges 200 in 688ms (next.js: 45ms, proxy.ts: 597ms, application-code: 46ms)
+ GET /fact-checker 200 in 678ms (next.js: 13ms, proxy.ts: 584ms, application-code: 80ms)
+ GET /challenges 200 in 506ms (next.js: 13ms, proxy.ts: 268ms, application-code: 225ms)
+ GET /tutor 200 in 718ms (next.js: 11ms, proxy.ts: 247ms, application-code: 460ms)
+[tutor] could not create session: Could not find the table 'public.ai_sessions' in the schema cache
+ POST /api/tutor 200 in 43s (next.js: 17ms, proxy.ts: 1831ms, application-code: 41s)
+[tutor] could not create session: Could not find the table 'public.ai_sessions' in the schema cache
+ POST /api/tutor 200 in 4.2s (next.js: 5ms, proxy.ts: 538ms, application-code: 3.7s)
+[tutor] could not create session: Could not find the table 'public.ai_sessions' in the schema cache
+ POST /api/tutor 200 in 21.2s (next.js: 5ms, proxy.ts: 986ms, application-code: 20.2s)
+[tutor] could not create session: Could not find the table 'public.ai_sessions' in the schema cache
+ POST /api/tutor 200 in 30.1s (next.js: 4ms, proxy.ts: 1132ms, application-code: 29.0s)
+[tutor] could not create session: Could not find the table 'public.ai_sessions' in the schema cache
+[ai] Make.com returned status 500. Scenario failed to complete.
+[ai] OpenAI is rate limited or out of quota. { "error": { "message": "You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.", "type": "insufficient_quota", "param": null, "code": "credit_balance_exhausted" } }
+[ai] responding from the local engine
+ POST /api/tutor 200 in 15.7s (next.js: 4ms, proxy.ts: 430ms, application-code: 15.2s)
+[tutor] could not create session: Could not find the table 'public.ai_sessions' in the schema cache
+ POST /api/tutor 200 in 6.0s (next.js: 238ms, proxy.ts: 1253ms, application-code: 4.5s)
+✓ Compiled in 2.1s
+ GET /challenges 200 in 1021ms (next.js: 28ms, proxy.ts: 729ms, application-code: 264ms)
+ GET /tutor 200 in 1287ms (next.js: 71ms, proxy.ts: 750ms, application-code: 466ms)
+ GET /challenges 200 in 353ms (next.js: 7ms, proxy.ts: 301ms, application-code: 46ms)
+ GET /tutor 200 in 613ms (next.js: 9ms, proxy.ts: 369ms, application-code: 235ms)
+✓ Compiled in 447ms
+ GET / 200 in 240ms (next.js: 133ms, proxy.ts: 6ms, application-code: 100ms)
+⚠ Blocked cross-origin request to Next.js dev resource /_next/static/chunks/%5Broot-of-the-server%5D__0h72x19._.css from "127.0.0.1".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['127.0.0.1'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+  Reload env: .env.local
+⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+✓ Compiled in 1038ms
+ GET /challenges 200 in 1606ms (next.js: 225ms, proxy.ts: 1165ms, application-code: 215ms)
+ GET /challenges 200 in 874ms (next.js: 22ms, proxy.ts: 772ms, application-code: 80ms)
+ GET /tutor 200 in 2.6s (next.js: 256ms, proxy.ts: 620ms, application-code: 1773ms)
+⨯ Error: The destination stream closed early.
+    at ignore-listed frames {
+  digest: '2252656231'
+}
+ GET /tutor 200 in 2.4s (next.js: 37ms, proxy.ts: 341ms, application-code: 2.0s)
+⨯ Error: The destination stream closed early.
+    at ignore-listed frames {
+  digest: '2252656231'
+}
+ GET /tutor 200 in 3.2s (next.js: 11ms, proxy.ts: 787ms, application-code: 2.4s)
+ GET /tutor 200 in 974ms (next.js: 11ms, proxy.ts: 560ms, application-code: 403ms)
+ GET / 200 in 508ms (next.js: 41ms, proxy.ts: 385ms, application-code: 83ms)
+ GET /dashboard 307 in 257ms (proxy.ts: 203ms)
+ GET /dashboard 200 in 655ms (next.js: 12ms, proxy.ts: 171ms, application-code: 472ms)
+ GET /challenges 200 in 428ms (next.js: 12ms, proxy.ts: 168ms, application-code: 247ms)
+ GET /api/challenge?type=solve_it&subject=General&difficulty=easy 200 in 10.4s (next.js: 1011ms, proxy.ts: 501ms, application-code: 8.9s)
+ POST /api/challenge 200 in 3.0s (next.js: 16ms, proxy.ts: 320ms, application-code: 2.7s)
+ GET /api/challenge?type=solve_it&subject=General&difficulty=easy 200 in 13.8s (next.js: 4ms, proxy.ts: 4.0s, application-code: 9.9s)
+ POST /api/challenge 200 in 4.1s (next.js: 7ms, proxy.ts: 881ms, application-code: 3.2s)
+ GET /api/challenge?type=solve_it&subject=General&difficulty=easy 200 in 8.3s (next.js: 8ms, proxy.ts: 616ms, application-code: 7.6s)
+ POST /api/challenge 401 in 48ms (next.js: 8ms, proxy.ts: 19ms, application-code: 21ms)
+ GET / 200 in 68ms (next.js: 15ms, proxy.ts: 15ms, application-code: 39ms)
+ GET /signup 200 in 1269ms (next.js: 1205ms, proxy.ts: 13ms, application-code: 51ms)
+ GET /login 200 in 1241ms (next.js: 1194ms, proxy.ts: 11ms, application-code: 37ms)
+ GET /signup 200 in 70ms (next.js: 17ms, proxy.ts: 11ms, application-code: 42ms)
+ GET /dashboard 307 in 322ms (proxy.ts: 241ms)
+ GET /dashboard 200 in 1015ms (next.js: 8ms, proxy.ts: 212ms, application-code: 796ms)
+ GET /challenges 200 in 826ms (next.js: 62ms, proxy.ts: 523ms, application-code: 241ms)
+ GET /api/challenge?type=fact_check&subject=General&difficulty=easy 200 in 7.5s (next.js: 23ms, proxy.ts: 401ms, application-code: 7.1s)
+ POST /api/challenge 200 in 3.7s (next.js: 5ms, proxy.ts: 584ms, application-code: 3.1s)
+ GET /api/challenge?type=fact_check&subject=Chemistry&difficulty=easy 200 in 9.8s (next.js: 10ms, proxy.ts: 535ms, application-code: 9.3s)
+ POST /api/challenge 200 in 4.2s (next.js: 6ms, proxy.ts: 679ms, application-code: 3.5s)
+ GET /tutor 200 in 986ms (next.js: 53ms, proxy.ts: 467ms, application-code: 466ms)
+[tutor] could not create session: Could not find the table 'public.ai_sessions' in the schema cache
+ POST /api/tutor 200 in 6.8s (next.js: 82ms, proxy.ts: 1238ms, application-code: 5.5s)
+ GET /prompt-builder 200 in 2.1s (next.js: 1280ms, proxy.ts: 526ms, application-code: 255ms)
+ POST /api/prompt-builder 200 in 8.8s (next.js: 585ms, proxy.ts: 1366ms, application-code: 6.9s)
+ GET /classes 200 in 1624ms (next.js: 725ms, proxy.ts: 658ms, application-code: 241ms)
+ GET /fact-checker 200 in 1377ms (next.js: 507ms, proxy.ts: 604ms, application-code: 265ms)
+✓ Finished filesystem cache database compaction in 12.3s
+ POST /api/fact-check 200 in 5.6s (next.js: 72ms, proxy.ts: 443ms, application-code: 5.1s)
+ GET / 200 in 477ms (next.js: 17ms, proxy.ts: 407ms, application-code: 53ms)
+ GET /dashboard 307 in 206ms (proxy.ts: 193ms)
+ GET /dashboard 200 in 860ms (next.js: 9ms, proxy.ts: 211ms, application-code: 639ms)
+ GET /tutor 200 in 887ms (next.js: 17ms, proxy.ts: 395ms, application-code: 475ms)
+ GET /challenges 200 in 451ms (next.js: 13ms, proxy.ts: 199ms, application-code: 239ms)
+ GET /api/challenge?type=explain_it&subject=General&difficulty=medium 200 in 9.0s (next.js: 7ms, proxy.ts: 417ms, application-code: 8.6s)
+ POST /api/challenge 200 in 13.8s (next.js: 7ms, proxy.ts: 672ms, application-code: 13.1s)
+⨯ unhandledRejection: Error: Both middleware file "./src\middleware.ts" and proxy file "./src\proxy.ts" are detected. Please use "./src\proxy.ts" only. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+    at ignore-listed frames
+✓ Compiled in 1711ms
+ GET /challenges 200 in 1020ms (next.js: 14ms, proxy.ts: 795ms, application-code: 211ms)
+ GET /challenges 200 in 413ms (next.js: 13ms, proxy.ts: 301ms, application-code: 99ms)
+ GET /challenges 200 in 279ms (next.js: 11ms, proxy.ts: 185ms, application-code: 84ms)
+ GET /challenges 200 in 274ms (next.js: 12ms, proxy.ts: 182ms, application-code: 81ms)
+ GET /challenges 200 in 237ms (next.js: 8ms, proxy.ts: 169ms, application-code: 59ms)
+ GET /challenges 200 in 250ms (next.js: 9ms, proxy.ts: 160ms, application-code: 80ms)
+ GET /challenges 200 in 212ms (next.js: 6ms, proxy.ts: 157ms, application-code: 50ms)
+ GET /challenges 200 in 255ms (next.js: 9ms, proxy.ts: 166ms, application-code: 80ms)
+ GET /challenges 200 in 242ms (next.js: 11ms, proxy.ts: 155ms, application-code: 76ms)
+ GET /challenges 200 in 228ms (next.js: 9ms, proxy.ts: 164ms, application-code: 55ms)
+ GET /challenges 200 in 218ms (next.js: 7ms, proxy.ts: 158ms, application-code: 53ms)
+ GET /challenges 200 in 236ms (next.js: 7ms, proxy.ts: 156ms, application-code: 73ms)
+ GET /challenges 200 in 208ms (next.js: 5ms, proxy.ts: 161ms, application-code: 41ms)
+ GET /challenges 200 in 205ms (next.js: 6ms, proxy.ts: 155ms, application-code: 45ms)
+ GET /challenges 200 in 213ms (next.js: 8ms, proxy.ts: 153ms, application-code: 52ms)
+ GET /challenges 200 in 207ms (next.js: 6ms, proxy.ts: 149ms, application-code: 51ms)
+ GET /challenges 200 in 196ms (next.js: 6ms, proxy.ts: 151ms, application-code: 40ms)
+ GET /challenges 200 in 209ms (next.js: 6ms, proxy.ts: 156ms, application-code: 47ms)
+ GET /challenges 200 in 201ms (next.js: 6ms, proxy.ts: 152ms, application-code: 43ms)
+ GET /challenges 200 in 208ms (next.js: 6ms, proxy.ts: 153ms, application-code: 50ms)
+ GET /challenges 200 in 253ms (next.js: 19ms, proxy.ts: 170ms, application-code: 64ms)
+ GET /challenges 200 in 238ms (next.js: 10ms, proxy.ts: 165ms, application-code: 63ms)
+ GET /challenges 200 in 231ms (next.js: 10ms, proxy.ts: 155ms, application-code: 66ms)
+ GET /challenges 200 in 233ms (next.js: 9ms, proxy.ts: 157ms, application-code: 66ms)
+ GET /challenges 200 in 211ms (next.js: 7ms, proxy.ts: 155ms, application-code: 49ms)
+ GET /challenges 200 in 231ms (next.js: 16ms, proxy.ts: 161ms, application-code: 54ms)
+ GET /challenges 200 in 228ms (next.js: 6ms, proxy.ts: 159ms, application-code: 63ms)
+ GET /challenges 200 in 230ms (next.js: 6ms, proxy.ts: 171ms, application-code: 52ms)
+ GET /challenges 200 in 217ms (next.js: 6ms, proxy.ts: 157ms, application-code: 54ms)
+ GET /challenges 200 in 202ms (next.js: 5ms, proxy.ts: 158ms, application-code: 39ms)
+ GET /challenges 200 in 206ms (next.js: 13ms, proxy.ts: 156ms, application-code: 37ms)
+ GET /challenges 200 in 208ms (next.js: 6ms, proxy.ts: 154ms, application-code: 48ms)
+ GET /challenges 200 in 201ms (next.js: 4ms, proxy.ts: 160ms, application-code: 37ms)
+ GET /challenges 200 in 199ms (next.js: 6ms, proxy.ts: 151ms, application-code: 43ms)
+ GET /challenges 200 in 190ms (next.js: 5ms, proxy.ts: 148ms, application-code: 37ms)
+ GET /challenges 200 in 208ms (next.js: 13ms, proxy.ts: 155ms, application-code: 40ms)
+ GET /challenges 200 in 193ms (next.js: 6ms, proxy.ts: 149ms, application-code: 38ms)
+ GET /challenges 200 in 199ms (next.js: 4ms, proxy.ts: 156ms, application-code: 39ms)
+ GET /challenges 200 in 193ms (next.js: 5ms, proxy.ts: 151ms, application-code: 37ms)
+ GET /challenges 200 in 204ms (next.js: 5ms, proxy.ts: 154ms, application-code: 45ms)
+ GET /challenges 200 in 219ms (next.js: 6ms, proxy.ts: 156ms, application-code: 58ms)
+ GET /challenges 200 in 197ms (next.js: 5ms, proxy.ts: 155ms, application-code: 37ms)
+ GET /challenges 200 in 201ms (next.js: 5ms, proxy.ts: 159ms, application-code: 37ms)
+ GET /challenges 200 in 338ms (next.js: 5ms, proxy.ts: 298ms, application-code: 35ms)
+ GET /challenges 200 in 201ms (next.js: 7ms, proxy.ts: 155ms, application-code: 39ms)
+ GET /challenges 200 in 196ms (next.js: 6ms, proxy.ts: 147ms, application-code: 42ms)
+ GET /challenges 200 in 194ms (next.js: 5ms, proxy.ts: 149ms, application-code: 39ms)
+ GET /challenges 200 in 202ms (next.js: 5ms, proxy.ts: 160ms, application-code: 37ms)
+ GET /challenges 200 in 199ms (next.js: 6ms, proxy.ts: 151ms, application-code: 43ms)
+ GET /challenges 200 in 210ms (next.js: 5ms, proxy.ts: 155ms, application-code: 49ms)
+ GET /challenges 200 in 209ms (next.js: 6ms, proxy.ts: 155ms, application-code: 49ms)
+ GET /challenges 200 in 207ms (next.js: 6ms, proxy.ts: 154ms, application-code: 47ms)
+ GET /challenges 200 in 213ms (next.js: 6ms, proxy.ts: 160ms, application-code: 48ms)
+ GET /challenges 200 in 206ms (next.js: 6ms, proxy.ts: 163ms, application-code: 37ms)
+ GET /challenges 200 in 199ms (next.js: 5ms, proxy.ts: 154ms, application-code: 40ms)
+ GET /challenges 200 in 202ms (next.js: 5ms, proxy.ts: 159ms, application-code: 38ms)
+ GET /challenges 200 in 203ms (next.js: 5ms, proxy.ts: 158ms, application-code: 40ms)
+ GET /challenges 200 in 205ms (next.js: 5ms, proxy.ts: 154ms, application-code: 46ms)
+ GET /challenges 200 in 193ms (next.js: 5ms, proxy.ts: 147ms, application-code: 40ms)
+ GET /challenges 200 in 189ms (next.js: 5ms, proxy.ts: 146ms, application-code: 38ms)
+ GET /challenges 200 in 195ms (next.js: 5ms, proxy.ts: 151ms, application-code: 39ms)
+ GET /challenges 200 in 201ms (next.js: 6ms, proxy.ts: 150ms, application-code: 45ms)
+ GET /challenges 200 in 225ms (next.js: 7ms, proxy.ts: 159ms, application-code: 59ms)
+ GET /challenges 200 in 208ms (next.js: 5ms, proxy.ts: 159ms, application-code: 45ms)
+ GET /challenges 200 in 207ms (next.js: 5ms, proxy.ts: 152ms, application-code: 49ms)
+ GET /challenges 200 in 189ms (next.js: 4ms, proxy.ts: 151ms, application-code: 34ms)
+ GET /challenges 200 in 199ms (next.js: 6ms, proxy.ts: 150ms, application-code: 44ms)
+ GET /challenges 200 in 218ms (next.js: 6ms, proxy.ts: 157ms, application-code: 55ms)
+ GET /challenges 200 in 189ms (next.js: 4ms, proxy.ts: 148ms, application-code: 37ms)
+ GET /challenges 200 in 196ms (next.js: 6ms, proxy.ts: 152ms, application-code: 38ms)
+ GET /challenges 200 in 217ms (next.js: 6ms, proxy.ts: 174ms, application-code: 37ms)
+ GET /challenges 200 in 195ms (next.js: 5ms, proxy.ts: 155ms, application-code: 35ms)
+ GET /challenges 200 in 212ms (next.js: 5ms, proxy.ts: 158ms, application-code: 49ms)
+ GET /challenges 200 in 215ms (next.js: 6ms, proxy.ts: 165ms, application-code: 44ms)
+ GET /challenges 200 in 205ms (next.js: 5ms, proxy.ts: 164ms, application-code: 35ms)
+ GET /challenges 200 in 199ms (next.js: 6ms, proxy.ts: 152ms, application-code: 41ms)
+ GET /challenges 200 in 196ms (next.js: 5ms, proxy.ts: 153ms, application-code: 38ms)
+ GET /challenges 200 in 199ms (next.js: 5ms, proxy.ts: 155ms, application-code: 40ms)
+ GET /challenges 200 in 192ms (next.js: 6ms, proxy.ts: 148ms, application-code: 38ms)
+ GET /challenges 200 in 206ms (next.js: 6ms, proxy.ts: 157ms, application-code: 43ms)
+ GET /challenges 200 in 199ms (next.js: 5ms, proxy.ts: 156ms, application-code: 38ms)
+ GET /challenges 200 in 217ms (next.js: 6ms, proxy.ts: 160ms, application-code: 51ms)
+ GET /challenges 200 in 211ms (next.js: 6ms, proxy.ts: 152ms, application-code: 54ms)
+ GET /challenges 200 in 201ms (next.js: 6ms, proxy.ts: 151ms, application-code: 44ms)
+ GET /challenges 200 in 213ms (next.js: 5ms, proxy.ts: 163ms, application-code: 45ms)
+ GET /challenges 200 in 202ms (next.js: 5ms, proxy.ts: 156ms, application-code: 40ms)
+ GET /challenges 200 in 199ms (next.js: 6ms, proxy.ts: 152ms, application-code: 41ms)
+ GET /challenges 200 in 200ms (next.js: 6ms, proxy.ts: 149ms, application-code: 46ms)
+ GET /challenges 200 in 209ms (next.js: 6ms, proxy.ts: 155ms, application-code: 48ms)
+ GET /challenges 200 in 202ms (next.js: 6ms, proxy.ts: 148ms, application-code: 48ms)
+ GET /challenges 200 in 205ms (next.js: 5ms, proxy.ts: 156ms, application-code: 44ms)
+ GET /challenges 200 in 196ms (next.js: 5ms, proxy.ts: 151ms, application-code: 40ms)
+ GET /challenges 200 in 200ms (next.js: 5ms, proxy.ts: 155ms, application-code: 40ms)
+ GET /challenges 200 in 243ms (next.js: 21ms, proxy.ts: 176ms, application-code: 45ms)
+ GET /challenges 200 in 209ms (next.js: 5ms, proxy.ts: 156ms, application-code: 48ms)
+ GET /challenges 200 in 208ms (next.js: 5ms, proxy.ts: 155ms, application-code: 47ms)
+ GET /challenges 200 in 196ms (next.js: 5ms, proxy.ts: 151ms, application-code: 40ms)
+ GET /challenges 200 in 224ms (next.js: 6ms, proxy.ts: 173ms, application-code: 45ms)
+ GET /challenges 200 in 203ms (next.js: 5ms, proxy.ts: 158ms, application-code: 40ms)
+ GET /challenges 200 in 214ms (next.js: 5ms, proxy.ts: 161ms, application-code: 48ms)
+ GET /challenges 200 in 207ms (next.js: 5ms, proxy.ts: 157ms, application-code: 45ms)
+ GET /challenges 200 in 218ms (next.js: 4ms, proxy.ts: 175ms, application-code: 39ms)
+ GET /challenges 200 in 204ms (next.js: 6ms, proxy.ts: 150ms, application-code: 48ms)
+ GET /challenges 200 in 225ms (next.js: 6ms, proxy.ts: 153ms, application-code: 65ms)
+ GET /challenges 200 in 198ms (next.js: 5ms, proxy.ts: 155ms, application-code: 38ms)
+ GET /challenges 200 in 208ms (next.js: 6ms, proxy.ts: 155ms, application-code: 47ms)
+ GET /challenges 200 in 193ms (next.js: 5ms, proxy.ts: 151ms, application-code: 38ms)
+ GET /challenges 200 in 188ms (next.js: 5ms, proxy.ts: 146ms, application-code: 37ms)
+ GET /challenges 200 in 197ms (next.js: 5ms, proxy.ts: 153ms, application-code: 39ms)
+ GET /challenges 200 in 196ms (next.js: 5ms, proxy.ts: 152ms, application-code: 39ms)
+ GET /challenges 200 in 203ms (next.js: 5ms, proxy.ts: 156ms, application-code: 42ms)
+ GET /challenges 200 in 197ms (next.js: 5ms, proxy.ts: 149ms, application-code: 42ms)
+ GET /challenges 200 in 204ms (next.js: 5ms, proxy.ts: 159ms, application-code: 40ms)
+ GET /challenges 200 in 199ms (next.js: 6ms, proxy.ts: 141ms, application-code: 52ms)
+ GET /challenges 200 in 207ms (next.js: 5ms, proxy.ts: 161ms, application-code: 41ms)
+ GET /challenges 200 in 192ms (next.js: 6ms, proxy.ts: 151ms, application-code: 36ms)
+ GET /challenges 200 in 204ms (next.js: 6ms, proxy.ts: 158ms, application-code: 40ms)
+ GET /challenges 200 in 204ms (next.js: 5ms, proxy.ts: 157ms, application-code: 42ms)
+ GET /challenges 200 in 199ms (next.js: 5ms, proxy.ts: 149ms, application-code: 44ms)
+ GET /challenges 200 in 198ms (next.js: 5ms, proxy.ts: 153ms, application-code: 40ms)
+ GET /challenges 200 in 209ms (next.js: 5ms, proxy.ts: 156ms, application-code: 48ms)
+ GET /challenges 200 in 235ms (next.js: 6ms, proxy.ts: 185ms, application-code: 44ms)
+ GET /challenges 200 in 201ms (next.js: 6ms, proxy.ts: 152ms, application-code: 44ms)
+ GET /challenges 200 in 216ms (next.js: 5ms, proxy.ts: 154ms, application-code: 58ms)
+ GET /challenges 200 in 203ms (next.js: 5ms, proxy.ts: 154ms, application-code: 44ms)
+ GET /challenges 200 in 205ms (next.js: 6ms, proxy.ts: 155ms, application-code: 44ms)
+ GET /challenges 200 in 202ms (next.js: 5ms, proxy.ts: 153ms, application-code: 44ms)
+ GET /challenges 200 in 210ms (next.js: 5ms, proxy.ts: 158ms, application-code: 48ms)
+ GET /challenges 200 in 261ms (next.js: 5ms, proxy.ts: 219ms, application-code: 37ms)
+ GET /challenges 200 in 220ms (next.js: 6ms, proxy.ts: 166ms, application-code: 48ms)
+ GET /challenges 200 in 208ms (next.js: 5ms, proxy.ts: 164ms, application-code: 39ms)
+ GET /challenges 200 in 194ms (next.js: 5ms, proxy.ts: 150ms, application-code: 39ms)
+ GET /challenges 200 in 253ms (next.js: 5ms, proxy.ts: 202ms, application-code: 45ms)
+ GET /challenges 200 in 200ms (next.js: 6ms, proxy.ts: 161ms, application-code: 34ms)
+ GET /challenges 200 in 550ms (next.js: 10ms, proxy.ts: 481ms, application-code: 59ms)
+ GET /challenges 200 in 227ms (next.js: 7ms, proxy.ts: 181ms, application-code: 39ms)
+✓ Compiled in 386ms
+ GET /challenges 200 in 550ms (next.js: 8ms, proxy.ts: 483ms, application-code: 58ms)
+ GET /challenges 200 in 259ms (next.js: 11ms, proxy.ts: 189ms, application-code: 60ms)
+✓ Compiled in 183ms
+ GET /challenges 200 in 595ms (next.js: 4ms, proxy.ts: 543ms, application-code: 48ms)
+ GET /challenges 200 in 203ms (next.js: 5ms, proxy.ts: 164ms, application-code: 33ms)
+ GET /challenges 200 in 637ms (next.js: 5ms, proxy.ts: 348ms, application-code: 284ms)
+ GET / 200 in 357ms (next.js: 8ms, proxy.ts: 306ms, application-code: 44ms)
+ GET /dashboard 307 in 210ms (proxy.ts: 186ms)
+ GET /dashboard 200 in 812ms (next.js: 5ms, proxy.ts: 165ms, application-code: 642ms)
+ GET / 200 in 362ms (next.js: 6ms, proxy.ts: 321ms, application-code: 36ms)
+ GET /dashboard 307 in 163ms (proxy.ts: 157ms)
+ GET /dashboard 200 in 818ms (next.js: 5ms, proxy.ts: 179ms, application-code: 634ms)
+✓ Finished writing to filesystem cache in 11.9s

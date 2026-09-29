@@ -1,0 +1,37 @@
+{
+  "name": "buildai",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "verify:engines": "tsc verify-engines.ts --outDir .tmp/engines --module commonjs --target es2022 --moduleResolution node --esModuleInterop --skipLibCheck --strict && node .tmp/engines/verify-engines.js",
+    "test:ai": "node test-ai-integration.mjs",
+    "check:ai": "node -e \"const c = require('./src/services/ai/config.js'); console.log('🔍 AI Providers:', c.resolveRemoteProviders().map(p => p.id + ' (' + p.label + ')').join(', ') || 'Solo motor local')\""
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.4",
+    "@supabase/supabase-js": "^2.112.3",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.31.0",
+    "next": "16.3.1",
+    "openai": "^7.4.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "sonner": "^2.0.8",
+    "tailwind-merge": "^3.6.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,368 @@
+/**
+ * 30-day plan templates, one per business model.
+ *
+ * Plans run in four phases — validate, build, launch, scale — because that is
+ * the order that avoids the two classic failures: building something nobody
+ * wants, and launching to an audience that does not exist yet.
+ *
+ * Each task list must contain exactly `days` entries; `roadmap.ts` asserts this
+ * so a typo can never ship a short plan.
+ */
+
+export interface RoadmapPhaseTemplate {
+  days: number;
+  /** Default explanation attached to every task in the phase. */
+  reason: string;
+  tasks: string[];
+}
+
+export interface ModelRoadmap {
+  validate: RoadmapPhaseTemplate;
+  build: RoadmapPhaseTemplate;
+  launch: RoadmapPhaseTemplate;
+  scale: RoadmapPhaseTemplate;
+}
+
+export const MODEL_ROADMAPS: Record<string, ModelRoadmap> = {
+  "freelance-service": {
+    validate: {
+      days: 7,
+      reason: "Confirming someone will pay before you build anything",
+      tasks: [
+        "List 20 businesses that clearly show the problem you fix",
+        "Pick the single service you can deliver fastest and best",
+        "Write one paragraph describing the outcome you deliver",
+        "Check what 5 competitors charge for that same outcome",
+        "Set a fixed price and scope for one package",
+        "Talk to 3 prospects and ask what they would pay",
+        "Rewrite the offer using the exact words they used",
+      ],
+    },
+    build: {
+      days: 7,
+      reason: "Building the minimum assets needed to sell and deliver repeatably",
+      tasks: [
+        "Create a one-page site describing the offer and the price",
+        "Write one sample deliverable you can show publicly",
+        "Build a list of 50 target businesses with contact details",
+        "Write a four-line outreach message and test it on 5 people",
+        "Set up invoicing and a simple written agreement",
+        "Prepare a delivery checklist so every job is consistent",
+        "Block 2 hours a day for outreach in your calendar",
+      ],
+    },
+    launch: {
+      days: 7,
+      reason: "Volume of outreach matters more than a perfect website",
+      tasks: [
+        "Send 10 personal outreach messages",
+        "Follow up with everyone who opened but did not reply",
+        "Publish one piece of proof on LinkedIn",
+        "Offer a discounted first project to your warmest prospect",
+        "Send 10 more messages using your strongest opener",
+        "Deliver the first paid project flawlessly",
+        "Ask that client for a testimonial and a referral",
+      ],
+    },
+    scale: {
+      days: 9,
+      reason: "Turning one-off wins into repeatable, higher-priced work",
+      tasks: [
+        "Turn the testimonial into a public case study",
+        "Raise the price by 20% for the next enquiry",
+        "Propose a monthly retainer to your first client",
+        "Send 10 outreach messages referencing the case study",
+        "Create a second package aimed at a larger client",
+        "Ask 3 past contacts for a referral introduction",
+        "Keep the message with the most replies and cut the rest",
+        "Block next week's delivery time before selling more",
+        "Set next month's revenue target and outreach quota",
+      ],
+    },
+  },
+
+  "local-service": {
+    validate: {
+      days: 7,
+      reason: "Proving local demand and fixing the price before spending",
+      tasks: [
+        "List the services you can deliver reliably this week",
+        "Check the prices charged by 5 nearby competitors",
+        "Write a simple price list with three tiers",
+        "Choose the one neighbourhood you will focus on first",
+        "Visit or message 20 households in that area",
+        "Ask 5 people what would stop them booking you",
+        "Remove the main objection from your price list",
+      ],
+    },
+    build: {
+      days: 7,
+      reason: "Making you bookable and reachable by local customers",
+      tasks: [
+        "Create a free Google Business Profile for your service area",
+        "Gather or rent the equipment for your first three jobs",
+        "Write a booking script for phone and WhatsApp enquiries",
+        "Set up a calendar that includes travel time between jobs",
+        "Post your price list in two local community groups",
+        "Prepare a shareable price list image",
+        "Line up one contact who can take jobs you cannot cover",
+      ],
+    },
+    launch: {
+      days: 7,
+      reason: "Filling a schedule — not trying to cover a whole city",
+      tasks: [
+        "Contact 15 households or businesses with the price list",
+        "Book and complete your first paid job",
+        "Ask that customer for a review the same day",
+        "Offer a recurring discount to the first customer",
+        "Contact 15 more prospects in the same area",
+        "Post before-and-after photos of the first job",
+        "Ask both customers for one referral each",
+      ],
+    },
+    scale: {
+      days: 9,
+      reason: "Protecting your hours so growth does not cap your income",
+      tasks: [
+        "Rework your week so travel time is not wasted",
+        "Raise the price on new bookings by 10%",
+        "Convert two one-off jobs into recurring visits",
+        "Ask for a review after every completed job this week",
+        "Contact 15 prospects in the next neighbourhood",
+        "Drop whichever service earns least per hour",
+        "Offer one small upsell on every visit",
+        "Set a minimum booking value you will accept",
+        "Decide the point at which you will hire help",
+      ],
+    },
+  },
+
+  "digital-product": {
+    validate: {
+      days: 7,
+      reason: "Proving people will pay before you spend weeks building",
+      tasks: [
+        "List 10 problems you have solved repeatedly for others",
+        "Identify which of those people already pay to solve",
+        "Ask 5 people in that group what they do today",
+        "Pick the problem with the clearest existing demand",
+        "Write the product's promise in one sentence",
+        "Pre-sell it to 3 people before building anything",
+        "Price it by the time it saves, not the effort to build",
+      ],
+    },
+    build: {
+      days: 7,
+      reason: "Building only what is needed to sell and deliver once",
+      tasks: [
+        "Build the smallest version that still delivers the result",
+        "Use it yourself end to end and note every confusion",
+        "Create a free mini version to give away",
+        "Set up a checkout link and a delivery method",
+        "Write the product page with the promise at the top",
+        "Record a 30-second demo of the finished result",
+        "Add an email capture to the free version",
+      ],
+    },
+    launch: {
+      days: 7,
+      reason: "Pushing distribution hard — the product is already good enough",
+      tasks: [
+        "Post the free mini version in two relevant communities",
+        "Publish the 30-second demo on TikTok and Instagram",
+        "Send the finished product to everyone who pre-ordered",
+        "Ask the 3 pre-buyers for feedback and testimonials",
+        "Answer buyer questions publicly where they ask them",
+        "Post the first results screenshot from a user",
+        "Run a 48-hour discount for your email list",
+      ],
+    },
+    scale: {
+      days: 9,
+      reason: "Raising revenue per visitor instead of chasing more traffic",
+      tasks: [
+        "Add an upsell for people who already bought",
+        "Turn the most common question into a bonus guide",
+        "Publish two more demos showing different use cases",
+        "Ask every buyer for a testimonial",
+        "Raise the price for new buyers by 20%",
+        "Create a bundle with a complementary product",
+        "Collect emails from everyone who took the free version",
+        "Send a short follow-up email to everyone who did not buy",
+        "Choose the next product and pre-sell it",
+      ],
+    },
+  },
+
+  "coaching-consulting": {
+    validate: {
+      days: 7,
+      reason: "Confirming the problem is expensive enough that people pay to fix it",
+      tasks: [
+        "List 20 people stuck on a decision you have made before",
+        "Choose the one decision you are most qualified to help with",
+        "Write the outcome your engagement produces in one sentence",
+        "Ask 5 people in that group what they would pay to solve it",
+        "Price a single diagnostic session and a full package",
+        "Run 2 free diagnostic calls and time them carefully",
+        "Rewrite the offer to match the problem they described",
+      ],
+    },
+    build: {
+      days: 7,
+      reason: "Making the engagement repeatable so delivery does not drain your week",
+      tasks: [
+        "Write a one-page description of the engagement and its outcome",
+        "Create a short worksheet clients complete before session one",
+        "Set up a booking link with payment required to confirm",
+        "Write the questions you will ask in the diagnostic call",
+        "Prepare a session template you can reuse with every client",
+        "Publish one post describing the decision you help with",
+        "Set a calendar rule that protects client session time",
+      ],
+    },
+    launch: {
+      days: 7,
+      reason: "Free diagnostics create the trust a paid engagement requires",
+      tasks: [
+        "Post a teardown of one expensive decision made badly",
+        "Offer 5 free 20-minute diagnostic calls this week",
+        "Run the calls and take careful notes on each problem",
+        "Propose a paid engagement to the 2 clearest fits",
+        "Publish a short framework based on the common pattern",
+        "Ask each free-call participant for a referral",
+        "Deliver the first paid session and collect feedback",
+      ],
+    },
+    scale: {
+      days: 9,
+      reason: "Raising price and leverage instead of adding more hours",
+      tasks: [
+        "Turn the first client's result into a short case study",
+        "Raise the package price for the next client",
+        "Productise one part of the work into a group session",
+        "Ask the first client for a written testimonial",
+        "Publish the case study with the numbers included",
+        "Create a paid entry-level session to lower commitment",
+        "Ask 3 past contacts who they could introduce you to",
+        "Add one reusable asset you hand to every client",
+        "Set the maximum number of clients you will run at once",
+      ],
+    },
+  },
+
+  "social-media-management": {
+    validate: {
+      days: 7,
+      reason: "Proving the offer with real samples before asking for money",
+      tasks: [
+        "List 20 local businesses with weak or stalled profiles",
+        "Note exactly what is wrong with each profile",
+        "Pick 5 where the fix is obvious and valuable",
+        "Make one free sample post for each of those 5",
+        "Set a monthly price based on posts per month",
+        "Ask 3 business owners what they would pay for it",
+        "Adjust the package to the work they actually want",
+      ],
+    },
+    build: {
+      days: 7,
+      reason: "Standardising delivery so each client does not cost more time",
+      tasks: [
+        "Write a one-page description of the monthly package",
+        "Create a content template you can reuse per client",
+        "Set up a shared folder structure for each client",
+        "Design a simple monthly reporting format",
+        "Prepare a shoot checklist for filming on location",
+        "Decide your revision policy and write it down",
+        "Block the hours each week for content production",
+      ],
+    },
+    launch: {
+      days: 7,
+      reason: "Sending work unasked is the fastest route to a first client",
+      tasks: [
+        "Send the free sample post to each of the 5 businesses",
+        "Follow up with the 3 who replied",
+        "Publish your own results post on your own profile",
+        "Offer a discounted first month to the warmest lead",
+        "Reach out to 10 more businesses with samples",
+        "Onboard the first paying client properly",
+        "Ask the first client for a testimonial after two weeks",
+      ],
+    },
+    scale: {
+      days: 9,
+      reason: "Protecting margin by batching work and limiting revisions",
+      tasks: [
+        "Publish the first client's monthly results",
+        "Raise the price for the next new client",
+        "Ask the first client for one referral",
+        "Create a two-tier package with a cheaper entry point",
+        "Batch content across clients to cut production time",
+        "Drop any client whose revisions are unlimited",
+        "Produce one new sample per week for prospects",
+        "Document your process so an assistant could follow it",
+        "Set a cap on how many clients you serve at once",
+      ],
+    },
+  },
+
+  "ecommerce-reselling": {
+    validate: {
+      days: 7,
+      reason: "Confirming the margin works before tying up cash in stock",
+      tasks: [
+        "Choose one product category you already understand",
+        "Check what 5 sellers charge for the same product",
+        "Confirm where you can buy it at a workable margin",
+        "Work out the real cost including fees and shipping",
+        "Set an opening price that leaves at least a 30% margin",
+        "Pre-sell one unit before buying any stock",
+        "Adjust the price after the first real sale",
+      ],
+    },
+    build: {
+      days: 7,
+      reason: "Making the first listings good enough to sell without over-ordering",
+      tasks: [
+        "Photograph the first product properly in daylight",
+        "Write a listing with honest descriptions and sizes",
+        "Create listings on one marketplace only to start",
+        "Set up packaging and a simple dispatch routine",
+        "Prepare a short FAQ for pre-purchase questions",
+        "Decide your returns policy and state it clearly",
+        "Set a restock rule based on how fast items sell",
+      ],
+    },
+    launch: {
+      days: 7,
+      reason: "Proving the listing converts before buying more stock",
+      tasks: [
+        "Publish the first listings with all photos complete",
+        "Message 10 recent buyers of similar products",
+        "Post the packing video on Instagram or TikTok",
+        "Offer a first-order discount to your first 5 buyers",
+        "Dispatch the first orders with a thank-you note",
+        "Ask every buyer for a review after delivery",
+        "Answer the most common question in a public post",
+      ],
+    },
+    scale: {
+      days: 9,
+      reason: "Concentrating cash on proven sellers instead of a wide catalogue",
+      tasks: [
+        "Reinvest the first profit into the two best sellers only",
+        "Raise the price on the fastest-selling item",
+        "Bundle two products that are often bought together",
+        "Ask every buyer for a review or a repeat order",
+        "Cut any product that has not sold in three weeks",
+        "Add a second marketplace for the best sellers",
+        "Negotiate a better buying price at higher volume",
+        "Set a rule for how much cash stays tied up in stock",
+        "Decide what you will do when one product stops selling",
+      ],
+    },
+  },
+};

@@ -1,0 +1,12 @@
+import React from "react";import {createRoot} from "react-dom/client";
+import {AppShell} from "../src/components/layout/app-shell";import {TutorView} from "../src/components/tutor/tutor-view";import {ChallengesView} from "../src/components/challenges/challenges-view";import {PromptBuilderView} from "../src/components/prompt-builder/prompt-builder-view";import {FactCheckerView} from "../src/components/fact-checker/fact-checker-view";import {OnboardingForm} from "../src/components/onboarding/onboarding-form";import {AuthForm} from "../src/components/auth/auth-form";import {TeacherDashboardView} from "../src/components/teacher/teacher-dashboard-view";
+window.fetch=async(input:any)=>{await new Promise(r=>setTimeout(r,160));const url=String(input);let data:any={};
+if(url.includes("/api/tutor"))data={sessionId:"review",reply:"Start with the evidence. What could you measure to test your explanation?"};
+if(url.includes("/api/challenge"))data=url.includes("?")?{title:"Reason from evidence",description:"Practice independent thinking.",content:"How would you verify a claim about plant growth?",correctAnswer:"Compare a control group with a test group.",hints:["Change one variable."],explanation:"A controlled comparison helps isolate the cause.",xpBase:35}:{attempt:{xp_earned:35}};
+if(url.includes("/api/prompt-builder"))data={optimizedPrompt:"Explain photosynthesis for a beginner using a worked example.",explanation:"The audience and output are clear.",whyGood:["Specific context"],tips:["Give an example"]};
+if(url.includes("/api/fact-check"))data={overallAssessment:"Check the claim against primary evidence.",claims:[{statement:"A claim to investigate",status:"needs_verification",explanation:"Evidence is needed.",suggestedVerification:"Consult the original study."}],keyWarnings:["Do not assume confidence implies accuracy."],questionsToInvestigate:["Where is the evidence?"],confidenceNote:"An assessment is not independent verification."};
+return new Response(JSON.stringify(data),{status:200,headers:{"Content-Type":"application/json"}});
+};
+const name=new URLSearchParams(location.search).get("screen")||"tutor";
+const views:any={tutor:<TutorView userName="Alex" />,challenges:<ChallengesView />,"prompt-builder":<PromptBuilderView />,"fact-checker":<FactCheckerView />,onboarding:<OnboardingForm />,signup:<AuthForm mode="signup" />,teacher:<TeacherDashboardView profile={{name:"Alex"} as any} classes={[]} />};
+createRoot(document.getElementById("root")!).render(<AppShell role={name==="teacher"?"teacher":"student"}>{views[name]}</AppShell>);

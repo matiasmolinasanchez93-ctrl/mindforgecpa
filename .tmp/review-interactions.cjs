@@ -1,0 +1,64 @@
+const fs=require('fs'),path=require('path'),{spawn}=require('child_process'),{pathToFileURL}=require('url');
+const out=path.resolve('.tmp/visual-review');
+const delay=ms=>new Promise(r=>setTimeout(r,ms));
+(async()=>{
+const browser=spawn('C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',['--headless=new','--disable-gpu','--no-first-run','--no-default-browser-check','--remote-debugging-port=9338','--remote-debugging-address=127.0.0.1','--user-data-dir='+path.join(out,'chrome-profile'),'about:blank'],{windowsHide:true,stdio:'ignore'});
+let ws;
+try {
+ let targets;for(let i=0;i<60;i++){try{targets=await(await fetch('http://127.0.0.1:9338/json')).json();break;}catch{await delay(250);}}
+ if(!targets)throw Error('Browser did not start');
+ ws=new WebSocket(targets.find(t=>t.type==='page').webSocketDebuggerUrl);await new Promise((r,j)=>{ws.onopen=r;ws.onerror=j;});
+ let id=0;const callbacks=new Map();
+ ws.onmessage=e=>{const m=JSON.parse(e.data);if(m.id&&callbacks.has(m.id)){const [r,j]=callbacks.get(m.id);callbacks.delete(m.id);m.error?j(Error(m.error.message)):r(m.result);}};
+ const send=(method,params={})=>new Promise((r,j)=>{const key=++id;callbacks.set(key,[r,j]);ws.send(JSON.stringify({id:key,method,params}));});
+ await send('Page.enable');await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
+
+ const evaluate=async expression=>{const r=await send('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.text+JSON.stringify(r.exceptionDetails.exception));return r.result.value;};
+ const check=async(label,expression)=>{if(!await evaluate(expression))throw Error('FAILED: '+label);console.log('PASS '+label);};
+ const click=async text=>evaluate('(()=>{const b=[...document.querySelectorAll("button")].find(e=>e.textContent.includes('+JSON.stringify(text)+'));if(!b)throw Error("Missing button");b.click();})()');
+ const fill=async(selector,value)=>evaluate('(()=>{const e=document.querySelector('+JSON.stringify(selector)+');const p=e.tagName==="TEXTAREA"?HTMLTextAreaElement.prototype:HTMLInputElement.prototype;Object.getOwnPropertyDescriptor(p,"value").set.call(e,'+JSON.stringify(value)+');e.dispatchEvent(new Event("input",{bubbles:true}));})()');
+ const go=async name=>{await send('Page.navigate',{url:pathToFileURL(path.join(out,'interactive.html')).href+'?screen='+name});for(let i=0;i<40;i++){await delay(50);if(await evaluate('!!document.querySelector("main button")'))break;}};
+ const snap=async name=>{const png=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(out,name+'.png'),Buffer.from(png.data,'base64'));};
+ await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
+ await go('tutor');
+ await evaluate('document.querySelector("[aria-controls=mobile-menu]").click()');await delay(80);
+ await check('Mobile menu expands','document.querySelector("[aria-controls=mobile-menu]").getAttribute("aria-expanded")==="true"');
+ await evaluate('document.querySelector("#mobile-menu").dispatchEvent(new KeyboardEvent("keydown",{key:"Escape",bubbles:true}))');await delay(80);
+ await check('Escape closes mobile menu','!document.querySelector("#mobile-menu")');
+ await click('Start Learning');await delay(80);
+ await fill('input[aria-label="Message to your tutor"]','How do I test an explanation?');await delay(80);
+ await evaluate('document.querySelector("button[aria-label=Send]").click()');await delay(60);
+ await check('Tutor announces thinking','!!document.querySelector("[role=status]")');
+ await delay(250);
+ await check('Tutor renders reply','document.body.innerText.includes("Start with the evidence.")');
+ await check('Composer clears after send','document.querySelector("input[aria-label]").value===""');
+ await check('Composer clears mobile navigation','document.querySelector(".chat-composer").getBoundingClientRect().bottom<=document.querySelector("nav[aria-label=\\"Quick navigation\\"]").getBoundingClientRect().top+1');
+ await snap('tutor-conversation-mobile');
+ await go('challenges');await click('Get Challenge');await delay(250);
+ await check('Challenge generation','document.body.innerText.includes("Reason from evidence")');
+ await fill('textarea','I would compare two groups while changing only a single variable.');await delay(80);
+ await click('Submit Answer');await delay(250);
+ await check('Challenge completion and XP','document.body.innerText.includes("35 XP earned")&&!!document.querySelector(".celebration")');
+ await snap('challenge-completed-mobile');
+ await click('Next Challenge');await delay(250);
+ await check('Next challenge resets answer','document.querySelector("textarea").value===""');
+ await go('prompt-builder');await fill('textarea','Explain photosynthesis');await delay(80);await click('Build Prompt');await delay(250);
+ await check('Prompt result and feedback','document.body.innerText.includes("Specific context")&&document.body.innerText.includes("Give an example")');
+ await snap('prompt-result-mobile');
+ await go('fact-checker');await fill('textarea','An assertion that needs verification.');await delay(80);await click('Analyze');await delay(250);
+ await check('Fact check claims and warnings','document.body.innerText.includes("A claim to investigate")&&document.body.innerText.includes("Where is the evidence?")');
+ await snap('fact-check-result-mobile');
+ await go('signup');await click('Teacher');await delay(80);
+ await check('Signup role selection','[...document.querySelectorAll("button")].some(e=>e.textContent.includes("Teacher")&&e.getAttribute("aria-pressed")==="true")');
+ await go('teacher');await click('New Class');await delay(80);
+ await check('Teacher class form opens','!!document.querySelector("input[aria-label=\\"Class name\\"]")');
+ await click('Cancel');await delay(80);
+ await check('Teacher class form cancels','!document.querySelector("input[aria-label=\\"Class name\\"]")');
+ await go('onboarding');await click('Continue');await delay(80);await click('Continue');await delay(80);
+ await check('Onboarding advances to skills','document.body.innerText.includes("What are you good at?")');
+ await check('Onboarding prevents empty selection','[...document.querySelectorAll("button")].find(e=>e.textContent.includes("Continue")).disabled');
+ await check('Mobile interactive screen has no overflow','document.documentElement.scrollWidth===innerWidth');
+ console.log('All interactive checks passed with local mocked APIs.');
+ await send('Browser.close');ws.close();
+}finally{if(ws)ws.close();browser.kill();}
+})().catch(e=>{console.error(e);process.exitCode=1;});
